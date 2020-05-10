@@ -1,0 +1,55 @@
+toggleAll
+	keep current loop
+	instead of changing html object
+		localhost:8080/setCompleted
+			post call with key int id and boolean completed
+	update
+
+Add an Item
+	localhost:8080/addItem
+		post call with key String(140) todoText
+	update (int id)
+	
+Item (sub)
+	complete item
+		localhost:8080/setCompleted
+			post call with key int id and boolean completed
+		update(int id)
+	
+	delete item
+		localhost:8080/deleteItem
+			post call with key int id
+		update(int id)
+
+left counter
+	- Unmodified
+
+show
+	- Unmodified
+
+clear completed
+	value-less post-call to
+		localhost:8080/deleteCompletedItems
+	update
+	
+	Call whenever the site is loaded, when deleteCompletedItems is called, and whenever all items are toggled not-/completed.
+update
+	clear js item list
+	fetch new item list
+		value-less get-call to
+			localhost:8080/getAlItems
+	convert json to correctly formatted html objects
+	update visibility
+	update left counter
+	
+	Call whenever a single object is changed / added (deleteItem / setCompleted / addItem)
+update (int id)
+	fetch item(id)
+		get-call to
+			localhost:8080/getItem
+				with key int id
+	convert json to correctly formatted html object
+	replace object in js item list with new object
+		if an object with that id already exists, just add it at the end of the js item list
+	update visibility
+	update left counter
